@@ -5,10 +5,12 @@ function App() {
     const [testWords, setTestWords] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [wordsCorrect, setWordsCorrect] = useState(0);
+    const [totalWordsTyped, setTotalWordsTyped] = useState(0); // New state for total words typed
     const [currentTypedWords, setCurrentTypedWords] = useState([]);
     const [timer, setTimer] = useState(60); // Timer for the test
     const [isTestRunning, setIsTestRunning] = useState(false); // Test running status
     const [hasStartedTyping, setHasStartedTyping] = useState(false); // Track if user has started typing
+    const [testDuration, setTestDuration] = useState(60); // Default duration is 60 seconds
 
     useEffect(() => {
         displayTest(difficulty);
@@ -34,9 +36,10 @@ function App() {
         setInputValue('');
         setCurrentTypedWords([]);
         resetWordStyle(); // Reset styles whenever a new test is displayed
-        setTimer(60); // Reset timer to 60 seconds
+        setTimer(testDuration); // Reset timer to the selected duration
         setIsTestRunning(false); // Ensure the test is not running initially
         setHasStartedTyping(false); // Reset typing state
+        setTotalWordsTyped(0); // Reset total words typed
     };
 
     const handleInputChange = (event) => {
@@ -78,6 +81,8 @@ function App() {
         });
 
         setWordsCorrect(correctCount);
+        setTotalWordsTyped(wordsTyped.length); // Update total words typed
+
         // If the word number reaches 40, load new words
         if (wordsTyped.length >= 40) {
             loadNewWords();
@@ -89,7 +94,6 @@ function App() {
         setTestWords(newTest);
         setInputValue(''); // Clear input for the next test
         resetWordStyle(); // Reset styles for the new words
-        // Do not update wordsCorrect here, let it be updated based on user input
     };
 
     const resetWordStyle = () => {
@@ -128,6 +132,12 @@ function App() {
         }
     };
 
+    const calculateResults = () => {
+        const accuracy = (wordsCorrect / totalWordsTyped) * 100 || 0; // Calculate accuracy
+        const wpm = (totalWordsTyped / (testDuration / 60)).toFixed(2); // Calculate WPM
+        return { accuracy, wpm };
+    };
+
     return createElement(
         'div',
         { className: 'App' },
@@ -145,9 +155,22 @@ function App() {
             value: inputValue,
             onChange: handleInputChange,
             id: 'textInput',
-            // The input should always be enabled, so we remove this line:
-            // disabled: !isTestRunning, 
         }),
+
+        createElement(
+            'div',
+            { className: 'duration-buttons' },
+            createElement(
+                'button',
+                { onClick: () => { setTestDuration(30); displayTest(difficulty); } },
+                '30 Sec'
+            ),
+            createElement(
+                'button',
+                { onClick: () => { setTestDuration(60); displayTest(difficulty); } },
+                '60 Sec'
+            )
+        ),
 
         createElement(
             'button',
@@ -171,7 +194,22 @@ function App() {
             'div',
             { className: 'status' },
             createElement('span', null, `Words Correct: ${wordsCorrect}`),
+            createElement('span', null, ` | Total Words Typed: ${totalWordsTyped}`),
             createElement('span', null, ` | Time Remaining: ${timer} seconds`)
+        ),
+        
+        // Display accuracy and WPM when the test is completed
+        !isTestRunning && totalWordsTyped > 0 && createElement(
+            'div',
+            { className: 'results' },
+            (() => {
+                const { accuracy, wpm } = calculateResults();
+                return createElement(
+                    'span',
+                    null,
+                    `Accuracy: ${accuracy.toFixed(2)}% | WPM: ${wpm}`
+                );
+            })()
         )
     );
 }
