@@ -140,11 +140,11 @@ function App() {
 
     return createElement(
         'div',
-        { className: 'App' },
+        { className: 'star-wars' },
         createElement('h1', null, 'Typing Test'),
         createElement(
             'div',
-            { id: 'textDisplay' },
+            { id: 'textDisplay', className:'crawl' },
             testWords.map((word, index) =>
                 createElement('span', { key: index, id: `word-${index + 1}` }, `${word} `)
             )
