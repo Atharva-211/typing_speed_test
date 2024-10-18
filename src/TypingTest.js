@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DurationButtons from './DurationButtons';
 import DifficultyButtons from './DifficultyButtons';
 import Results from './Results';
@@ -16,6 +16,8 @@ const TypingTest = () => {
     const [testDuration, setTestDuration] = useState(60);
     const [isInputDisabled, setIsInputDisabled] = useState(false);
     const [showResults, setShowResults] = useState(false);
+    
+    const textDisplayRef = useRef(null); // Ref for the text display container
 
     useEffect(() => {
         displayTest(difficulty);
@@ -53,16 +55,31 @@ const TypingTest = () => {
     const handleInputChange = (event) => {
         const charEntered = event.target.value;
         setInputValue(charEntered);
-
+    
         if (!hasStartedTyping) {
             setIsTestRunning(true);
             setHasStartedTyping(true);
         }
-
+    
         const wordsTyped = charEntered.trim().split(' ');
         setCurrentTypedWords(wordsTyped);
         checkWords(wordsTyped);
+        
+        // Scroll to the current word with an offset for the next line
+        const currentWordIndex = wordsTyped.length - 1; // The last typed word's index
+        const currentWordElement = document.getElementById(`word-${currentWordIndex + 1}`);
+        
+        if (currentWordElement) {
+            const textDisplay = textDisplayRef.current;
+            const wordElementOffsetTop = currentWordElement.offsetTop; // Current word's position
+            const wordElementHeight = currentWordElement.offsetHeight; // Height of the current word
+            const scrollOffset = wordElementHeight * 2; // Adjust this to scroll two lines down
+    
+            // Scroll to the position with an offset
+            textDisplay.scrollTop = wordElementOffsetTop - scrollOffset;
+        }
     };
+    
 
     const checkWords = (wordsTyped) => {
         let correctCount = 0;
@@ -138,46 +155,44 @@ const TypingTest = () => {
     };
 
     return (
-        <div>
-            <div className="star-wars">
-                {/* Conditional Rendering */}
-                <div id="textDisplay" className="crawl">
-                    {/* Display continuous words */}
-                    {testWords.map((word, index) => (
-                        <span key={index} id={`word-${index + 1}`}>{word} </span>
-                    ))}
-                </div>
+        <div className="typing-test-container">
+            {/* Display words */}
+            <div id="textDisplay" ref={textDisplayRef}>
+                {testWords.map((word, index) => (
+                    <span key={index} id={`word-${index + 1}`}>{word} </span>
+                ))}
             </div>
 
             {/* Input field for typing */}
-            <div className='box'>
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    id="textInput"
-                    disabled={isInputDisabled}
-                />
+            <input
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                id="textInput"
+                className="input-box"
+                disabled={isInputDisabled}
+            />
 
-                {/* Duration and Difficulty buttons */}
+            {/* Buttons for duration and difficulty */}
+            <div className="buttons-container">
                 <DurationButtons setTestDuration={setTestDuration} displayTest={displayTest} difficulty={difficulty} />
                 <DifficultyButtons setDifficulty={setDifficulty} displayTest={displayTest} />
-
-                <div className="status">
-                    <span>Words Correct: {wordsCorrect}</span>
-                    <span> | Total Words Typed: {totalWordsTyped}</span>
-                    <span> | Time Remaining: {timer} seconds</span>
-                </div>
-
-                <div id="resultsDisplay">
-                    {!isTestRunning && totalWordsTyped > 0 && (
-                        <div>
-                            <Results accuracy={calculateResults().accuracy} wpm={calculateResults().wpm} />
-                            <button onClick={restartTest}>Restart Test</button>
-                        </div>
-                    )}
-                </div>
             </div>
+
+            {/* Status info */}
+            <div className="status">
+                <span>Words Correct: {wordsCorrect}</span>
+                <span> | Total Words Typed: {totalWordsTyped}</span>
+                <span> | Time Remaining: {timer} seconds</span>
+            </div>
+
+            {/* Results Display */}
+            {showResults && (
+                <div className="results-container">
+                    <Results accuracy={calculateResults().accuracy} wpm={calculateResults().wpm} />
+                    <button onClick={restartTest} className="restart-button">Restart Test</button>
+                </div>
+            )}
         </div>
     );
 };

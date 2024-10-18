@@ -1,186 +1,159 @@
-.correct {
-  color: green;
-}
-
-.wrong {
-  color: red;
-}
-
-.current {
-  border-bottom: 2px solid blue;
-}
-
-#testDisplay span {
-  margin-right: 5px;
-}
-
-.controls button {
-  margin: 5px;
-}
-
-.status span {
-  margin-right: 20px;
-  font-size: 18px;
-  color: #feda4a;
-}
-
-
+/* General Styles */
 body {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
-}
-
-/* .fade {
-  position: relative;
-  width: 100%;
-  min-height: 60vh;
-  top: -25px;
-  background-image: linear-gradient(0deg, transparent, black 75%);
-  z-index: 1;
-} */
-
-.star-wars {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #f0f4f7, #e2e2e2);
+  color: #333;
+  padding: 0;
+  margin: 0;
+  height: 100vh; /* Full height of the viewport */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Column layout for controls and text */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+}
+
+.text-container {
+  height: 50vh; /* Container height */
+  overflow: hidden; /* Hide overflow to control it through textDisplay */
+  display: flex;
+  justify-content: center;
   align-items: center;
-  position: relative;
-  height: 800px;
-  color: #feda4a;
-  font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 300%;
-  font-weight: 600;
-  letter-spacing: 6px;
-  line-height: 150%;
-  perspective: 800px;
-  text-align: justify;
+  width: 100%; /* Full width */
 }
 
-.crawl {
-  position: relative;
-  top: 9999px;
-  transform-origin: 50% 100%;
-  animation: crawl 200s linear;
+/* Text Display */
+#textDisplay {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2vh; /* Adjust padding */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  width: 80%; /* Fixed width */
+  height: 40vh; /* Fixed height */
+  font-size: 5vh; /* Responsive font size */
+  line-height: 1.5;
+  text-align: center; /* Center text */
+  overflow-y: auto; /* Enable scrolling for overflow content */
+  overflow-wrap: break-word; /* Prevent overflow of long words */
 }
 
-.crawl > .title {
-  font-size: 90%;
+/* Input field styling */
+#textInput {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 2vh; /* Responsive padding */
+  font-size: 3vh; /* Responsive font size */
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  text-align: center; /* Center text in input */
+}
+
+#textInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Controls Styles */
+.controls {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.duration-buttons button,
+.difficulty-buttons button {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 2vh 5vh; /* Responsive padding */
+  margin: 0 10px;
+  font-size: 2.5vh; /* Responsive font size */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.duration-buttons button:hover,
+.difficulty-buttons button:hover {
+  background: linear-gradient(90deg, #0056b3, #007bff);
+  transform: scale(1.05);
+}
+
+/* Results Styling */
+.results {
+  background: #e9f7ef;
+  border: 1px solid #a1e8af;
+  border-radius: 8px;
+  padding: 5vh; /* Responsive padding */
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
-.crawl > .title h1 {
-  margin: 0 0 100px;
-  text-transform: uppercase;
+.results h3 {
+  font-size: 3.5vh; /* Responsive font size */
+  color: #2e7d32;
+  margin-bottom: 10px;
 }
 
-@keyframes crawl {
-  0% {
-    top: 200%;
-    transform: rotateX(20deg)  translateZ(0);
-  }
-  100% { 
-    top: -6000px;
-    transform: rotateX(25deg) translateZ(-2500px);
-  }
+.results p {
+  font-size: 2.5vh; /* Responsive font size */
+  margin: 5px 0;
 }
 
-/* Common styling for both DurationButtons and DifficultyButtons */
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+/* Word Styling */
+#textDisplay span {
+  padding: 0 0.2rem;
+  display: inline-block; /* Allows for inline spacing */
+  transition: color 0.3s ease;
 }
 
-.controls button {
-  margin: 10px;
-  padding: 12px 24px;
-  background-color: #222; /* Dark background */
-  color: #feda4a; /* Star Wars yellow text */
-  border: 2px solid #feda4a; /* Yellow border */
-  border-radius: 8px; /* Rounded corners */
-  font-size: 18px;
-  font-family: 'Pathway Gothic One', sans-serif;
-  text-transform: uppercase; /* Capitalized text */
-  letter-spacing: 2px; /* Spacing between letters */
-  cursor: pointer;
-  transition: all 0.3s ease; /* Smooth hover transitions */
-  box-shadow: 0px 0px 10px 0px rgba(254, 218, 74, 0.5); /* Soft yellow glow */
+.correct {
+  color: #28a745; /* Green for correct */
+  font-weight: bold;
 }
 
-.controls button:hover {
-  background-color: #444; /* Lighter background on hover */
-  color: #000; /* Black text on hover */
-  border: 2px solid #feda4a; /* Yellow border stays */
-  box-shadow: 0px 0px 20px 5px rgba(254, 218, 74, 0.8); /* Stronger glow */
-  transform: scale(1.05); /* Slight scaling for interaction feedback */
+.wrong {
+  color: #dc3545; /* Red for wrong */
+  text-decoration: line-through;
 }
 
-.controls button:active {
-  transform: scale(0.98); /* Slightly shrink on click for feedback */
-  background-color: #111; /* Darker background on click */
+.current {
+  color: #007bff; /* Blue for current word */
+  border-bottom: 2px solid #007bff; /* Underline current word */
 }
 
-/* Specific controls styling for additional customization */
-.duration-buttons {
-  margin-bottom: 20px;
-}
-
-.difficulty-buttons {
-  margin-bottom: 20px;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  height: 80vh; /* Adjust height relative to the viewport */
-  color: #feda4a;
-  font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 3vw; /* Scale font size based on viewport width */
-  font-weight: 600;
-  letter-spacing: 6px;
-  line-height: 150%;
-  perspective: 400px;
-  text-align: justify;
-  margin: 0 auto; /* Center the box horizontally */
-  overflow: hidden; /* Prevent content overflow */
-  padding: 20px; /* Add some padding for better spacing */
-  box-sizing: border-box; /* Ensure padding and border are included in height/width */
-}
-
-
-input {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  margin: 20px 0;
-  font-size: 18px;
-  border: 2px solid #444;
-  background-color: #222;
-  color: #feda4a;
-}
-
-input:focus {
-  outline: none;
-  border-color: #feda4a;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
+/* Status Section */
 .status {
-  display: flex;
-  justify-content: center;
-  font-size: 18px;
-  color: #feda4a;
+  text-align: center;
+  font-size: 2.5vh; /* Responsive font size */
   margin-top: 20px;
 }
 
 .status span {
-  margin-right: 15px;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #textDisplay {
+      font-size: 4vh; /* Adjust font size for smaller screens */
+  }
+
+  .controls {
+      flex-direction: column; /* Stack buttons vertically */
+  }
+
+  .controls button {
+      margin: 10px 0;
+  }
+}
+
+
+#textDisplay {
+  line-height: 2; /* Adjust this value as needed */
 }
