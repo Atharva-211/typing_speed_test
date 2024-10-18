@@ -19,7 +19,9 @@
 }
 
 .status span {
-  margin-right: 10px;
+  margin-right: 20px;
+  font-size: 18px;
+  color: #feda4a;
 }
 
 
@@ -30,27 +32,28 @@ body {
   overflow: hidden;
 }
 
-.fade {
+/* .fade {
   position: relative;
   width: 100%;
   min-height: 60vh;
   top: -25px;
   background-image: linear-gradient(0deg, transparent, black 75%);
   z-index: 1;
-}
+} */
 
 .star-wars {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   height: 800px;
   color: #feda4a;
   font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 500%;
+  font-size: 300%;
   font-weight: 600;
   letter-spacing: 6px;
   line-height: 150%;
-  perspective: 400px;
+  perspective: 800px;
   text-align: justify;
 }
 
@@ -58,7 +61,7 @@ body {
   position: relative;
   top: 9999px;
   transform-origin: 50% 100%;
-  animation: crawl 60s linear;
+  animation: crawl 200s linear;
 }
 
 .crawl > .title {
@@ -73,11 +76,111 @@ body {
 
 @keyframes crawl {
   0% {
-    top: 0;
+    top: 200%;
     transform: rotateX(20deg)  translateZ(0);
   }
   100% { 
     top: -6000px;
     transform: rotateX(25deg) translateZ(-2500px);
   }
+}
+
+/* Common styling for both DurationButtons and DifficultyButtons */
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.controls button {
+  margin: 10px;
+  padding: 12px 24px;
+  background-color: #222; /* Dark background */
+  color: #feda4a; /* Star Wars yellow text */
+  border: 2px solid #feda4a; /* Yellow border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 18px;
+  font-family: 'Pathway Gothic One', sans-serif;
+  text-transform: uppercase; /* Capitalized text */
+  letter-spacing: 2px; /* Spacing between letters */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth hover transitions */
+  box-shadow: 0px 0px 10px 0px rgba(254, 218, 74, 0.5); /* Soft yellow glow */
+}
+
+.controls button:hover {
+  background-color: #444; /* Lighter background on hover */
+  color: #000; /* Black text on hover */
+  border: 2px solid #feda4a; /* Yellow border stays */
+  box-shadow: 0px 0px 20px 5px rgba(254, 218, 74, 0.8); /* Stronger glow */
+  transform: scale(1.05); /* Slight scaling for interaction feedback */
+}
+
+.controls button:active {
+  transform: scale(0.98); /* Slightly shrink on click for feedback */
+  background-color: #111; /* Darker background on click */
+}
+
+/* Specific controls styling for additional customization */
+.duration-buttons {
+  margin-bottom: 20px;
+}
+
+.difficulty-buttons {
+  margin-bottom: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 80vh; /* Adjust height relative to the viewport */
+  color: #feda4a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 3vw; /* Scale font size based on viewport width */
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+  margin: 0 auto; /* Center the box horizontally */
+  overflow: hidden; /* Prevent content overflow */
+  padding: 20px; /* Add some padding for better spacing */
+  box-sizing: border-box; /* Ensure padding and border are included in height/width */
+}
+
+
+input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 18px;
+  border: 2px solid #444;
+  background-color: #222;
+  color: #feda4a;
+}
+
+input:focus {
+  outline: none;
+  border-color: #feda4a;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  color: #feda4a;
+  margin-top: 20px;
+}
+
+.status span {
+  margin-right: 15px;
 }

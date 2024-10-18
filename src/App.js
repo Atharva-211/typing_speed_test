@@ -1,13 +1,14 @@
+// App.js
 import React from 'react';
+import TypingTest from './TypingTest';
 import './App.css';
-import TextDisplayApp from './TextDisplayApp';
 
 function App() {
-  return (
-    <div className="App">
-      <TextDisplayApp />
-    </div>
-  );
+    return (
+        <div className="App">
+            <TypingTest />
+        </div>
+    );
 }
 
 export default App;
