@@ -1,10 +1,10 @@
-### Typing Test Application
+## Typing Test Application
 “Not everyone can type at supersonic speeds, but with this app, you’ll get pretty close.”
 
-### Welcome to the Typing Test of Tomorrow 🚀
+## Welcome to the Typing Test of Tomorrow 🚀
 You think you’re fast? Great. But are you Superhuman fast? This typing test app isn’t just a regular old speed and accuracy tester. Nope. It’s a finely-tuned digital playground designed to sharpen your fingers and make your brain break records. Here’s the breakdown of what makes this app an absolute game-changer.
 
-### What This Is
+## What This Is
 A React-powered typing test application that doesn’t just test your speed—it challenges your brain, hones your muscle memory, and gives you the thrill of beating your own records.
 
 ## Why You’ll Love It
@@ -24,7 +24,7 @@ Step 2: Install Dependencies
 ### 'npm install'
 
 Step 3: Start the App
-###'npm start'
+### 'npm start'
 
 Now open localhost:3000 in your browser and get ready to break your own records.
 
