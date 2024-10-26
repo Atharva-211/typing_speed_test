@@ -17,10 +17,10 @@ Type with Precision: Every word is instantly validated. Green for go, red for re
 See Your Results: At the end of the challenge, see your stats—WPM, accuracy, and more. Bragging rights included.
 Getting Started
 Step 1: Clone the Repository
-### 'git clone https://github.com/Atharva-211/typing_speed_test.git'
+# 'git clone https://github.com/Atharva-211/typing_speed_test.git'
 
 Step 2: Install Dependencies
-### 'cd typing-test-app'
+#### 'cd typing-test-app'
 ### 'npm install'
 
 Step 3: Start the App
