@@ -171,11 +171,30 @@ const TypingTest = () => {
         //     'Life is what happens when youre busy making other plans.'
         // ];
 
+        // switch (diff) {
+        //     case 1:
+        //         return Array.from({ length: 80 }, () => basicWords[Math.floor(Math.random() * basicWords.length)]);
+        //     case 2:
+        //         return Array.from({ length: 80 }, () => advancedWords[Math.floor(Math.random() * advancedWords.length)]);
+        //     case 3:
+        //         return quotes[Math.floor(Math.random() * quotes.length)].split(' ');
+        //     default:
+        //         return basicWords;
+        // }
+
+        const shuffleArray = (array) => {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        };
+    
         switch (diff) {
             case 1:
-                return Array.from({ length: 80 }, () => basicWords[Math.floor(Math.random() * basicWords.length)]);
+                return shuffleArray(basicWords).slice(0, 80);
             case 2:
-                return Array.from({ length: 80 }, () => advancedWords[Math.floor(Math.random() * advancedWords.length)]);
+                return shuffleArray(advancedWords).slice(0, 80);
             case 3:
                 return quotes[Math.floor(Math.random() * quotes.length)].split(' ');
             default:
