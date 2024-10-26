@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import DurationButtons from './DurationButtons';
 import DifficultyButtons from './DifficultyButtons';
 import Results from './Results';
+import { basicWords, advancedWords, quotes } from './wordData';
 
 const TypingTest = () => {
     const [difficulty, setDifficulty] = useState(1);
@@ -160,15 +161,15 @@ const TypingTest = () => {
 
     const randomWords = (diff) => {
         // Extended word lists for more variety
-        const basicWords = ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at'];
-        const advancedWords = ['algorithm', 'development', 'experience', 'technology', 'professional', 'implementation', 'architecture', 'sophisticated', 'development', 'performance'];
-        const quotes = [
-            'Success is not final, failure is not fatal: it is the courage to continue that counts.',
-            'The only way to do great work is to love what you do.',
-            'Innovation distinguishes between a leader and a follower.',
-            'The future belongs to those who believe in the beauty of their dreams.',
-            'Life is what happens when youre busy making other plans.'
-        ];
+        // const basicWords = ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'I', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at'];
+        // const advancedWords = ['algorithm', 'development', 'experience', 'technology', 'professional', 'implementation', 'architecture', 'sophisticated', 'development', 'performance'];
+        // const quotes = [
+        //     'Success is not final, failure is not fatal: it is the courage to continue that counts.',
+        //     'The only way to do great work is to love what you do.',
+        //     'Innovation distinguishes between a leader and a follower.',
+        //     'The future belongs to those who believe in the beauty of their dreams.',
+        //     'Life is what happens when youre busy making other plans.'
+        // ];
 
         switch (diff) {
             case 1:
