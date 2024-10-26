@@ -110,12 +110,7 @@ body {
   display: inline-block; /* Allows for inline spacing */
   transition: color 0.3s ease;
 }
-
-.correct {
-  color: #28a745; /* Green for correct */
-  font-weight: bold;
-}
-
+  
 .wrong {
   color: #dc3545; /* Red for wrong */
   text-decoration: line-through;
@@ -124,6 +119,11 @@ body {
 .current {
   color: #007bff; /* Blue for current word */
   border-bottom: 2px solid #007bff; /* Underline current word */
+}
+
+.correct {
+  color: #28a745; /* Green for correct */
+  font-weight: bold;
 }
 
 /* Status Section */
