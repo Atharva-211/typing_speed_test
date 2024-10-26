@@ -17,14 +17,26 @@ Type with Precision: Every word is instantly validated. Green for go, red for re
 See Your Results: At the end of the challenge, see your stats—WPM, accuracy, and more. Bragging rights included.
 Getting Started
 Step 1: Clone the Repository
-# 'git clone https://github.com/Atharva-211/typing_speed_test.git'
+### 
+```sh
+'git clone https://github.com/Atharva-211/typing_speed_test.git'
+```
 
 Step 2: Install Dependencies
-#### 'cd typing-test-app'
-### 'npm install'
+### 
+```sh
+'cd typing-test-app'
+```
+### 
+```sh
+'npm install'
+```
 
 Step 3: Start the App
-### 'npm start'
+### 
+```sh
+'npm start'
+```
 
 Now open localhost:3000 in your browser and get ready to break your own records.
 
