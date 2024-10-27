@@ -28,7 +28,7 @@ Step 1: Clone the Repository
 Step 2: Install Dependencies
 ### 
 ```sh
-'cd typing-test-app'
+'cd typing_speed_test'
 ```
 ### 
 ```sh
